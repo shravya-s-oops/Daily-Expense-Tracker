@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Daily Expense Tracker</title>
+    <style>
+     body {
+         color: black;
+         background-color: white;
+         font-family: Arial, sans-serif;
+         font-size: 18px;
+         font-weight: normal;
+     }
+       </style>
+   </head>
+   <body>
+      <h2>Welcome to the Track of your Daily Expense</h2>
+      <p>Please fill in your today's expenses</p> 
+     <form id="Expense-form">
+        <label>Date:</label><br>
+        <input type="date" id="date" name="Date" required><br>
+
+        <label>Expense name:</label><br>
+        <input type="text" id="expensename" name="Expense name" required><br>
+
+        <label>Amount(Rs.):</label><br>
+        <input type="number" id="amount" name="Amount" required><br>
+        <label>Category:</label><br>
+  <select id="category" name="Category">
+            <option value="Food">Food</option>
+            <option value="Study">Study</option>
+            <option value="Other">Other</option>
+        </select><br><br>
+	<button type="submit">Add Expense</button>
+</form>
+<h3>Expense List</h3>
+<table id="Expense-table">
+<tr>
+<th>Date</th>
+<th>Expense Name</th>
+<th>Amount</th>
+<th>Category</th>
+</tr>
+<tr class="total-row">
+            <td colspan="2">Total</td>
+            <td id="TotalAmount">0</td>
+            <td></td>
+        </tr>
+</table>
+  <script>
+    const form = document.getElementById('Expense-form');
+    const table = document.getElementById('Expense-table');
+    const totalamt = document.getElementById('TotalAmount');
+	let total=0;
+     form.addEventListener('submit', function(e) {
+      e.preventDefault();
+const date= document.getElementById("date").value;
+const expensename=document.getElementById("expensename").value;
+ const amount = parseInt(document.getElementById("amount").value);
+const category=document.getElementById("category").value;
+const totalRow = document.querySelector(".total-row");
+const newRow = table.insertRow(totalRow.rowIndex); 
+            newRow.insertCell(0).textContent = date;
+            newRow.insertCell(1).textContent = expensename;
+            newRow.insertCell(2).textContent = amount;
+            newRow.insertCell(3).textContent = category;
+	    total += amount;
+            totalamt.textContent = total;
+
+ form.reset();
+        });
+
+   
+</script>
+ </body>
+ </html>
